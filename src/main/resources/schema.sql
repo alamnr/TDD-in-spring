@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Post (
-    id INT NIT NULL,
+    id INT NOT NULL,
     user_id INT NOT NULL,
     title VARCHAR(250) NOT NULL,
     body text NOT NULL,
