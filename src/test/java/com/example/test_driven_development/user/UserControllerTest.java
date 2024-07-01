@@ -31,15 +31,15 @@ public class UserControllerTest {
 
     @Test
     void shouldReturnAllUsersForUnauthenticatedUsers() throws Exception{
-        when(userService.getAllUsers()).thenReturn(List.of(new User(1L,"Duke")));
+        when(userService.getAllUsers()).thenReturn(List.of(new User("Suria","duke@gmail.com")));
         
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/users")
                         .with(SecurityMockMvcRequestPostProcessors.user("foo").password("bar"))
                     )
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1L))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Duke"));
+                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Suria"))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].email").value("duke@gmail.com"));
     }
 
     @Test

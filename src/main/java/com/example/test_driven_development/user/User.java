@@ -1,5 +1,8 @@
 package com.example.test_driven_development.user;
 
-public record User(Long id, String name) {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
+public record User(@NotEmpty String name, @Email String email) {
     
 }

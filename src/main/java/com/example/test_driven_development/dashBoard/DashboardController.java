@@ -19,7 +19,7 @@ public class DashboardController {
     public String getDashBoardView(Model model){
         model.addAttribute("user", "Duke");
         model.addAttribute("analyticsGraph",dashBoardService.getAnalyticsGraphData());
-        model.addAttribute("quickNote", new QuickNote(""));
+        model.addAttribute("quickNote", new QuickNote());
 
         return "myDashboard";
 

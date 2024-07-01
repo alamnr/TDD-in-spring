@@ -1,11 +1,10 @@
 package com.example.test_driven_development.task;
 
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -77,6 +76,7 @@ public class TaskControllerTest {
             .perform(
                 MockMvcRequestBuilders.delete("/api/tasks/42")
                 .with(SecurityMockMvcRequestPostProcessors.csrf())
+                //.with(SecurityMockMvcRequestPostProcessors.user("duke").roles("USER"))
                 .with(SecurityMockMvcRequestPostProcessors.user("duke").roles("ADMIN"))
             )
             .andExpect(MockMvcResultMatchers.status().isOk());
@@ -90,8 +90,8 @@ public class TaskControllerTest {
     {
         this.mockMvc
                 .perform(
-                    MockMvcRequestBuilders.delete("/api/tests/42")
-                    .with(SecurityMockMvcRequestPostProcessors.csrf())
+                    MockMvcRequestBuilders.delete("/api/tasks/42")
+                    //.with(SecurityMockMvcRequestPostProcessors.csrf())
 
                 )
 

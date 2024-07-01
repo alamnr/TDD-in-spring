@@ -1,6 +1,7 @@
 package com.example.test_driven_development.task;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
-import jakarta.annotation.security.RolesAllowed;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -33,7 +32,8 @@ public class TaskController {
     }
 
     @DeleteMapping
-    @RolesAllowed("ADMIN")
+    //@RolesAllowed("ADMIN")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping("/{taskId}")
     public void deleteTask(@PathVariable Long taskId){
         this.taskService.deleteTask(taskId);

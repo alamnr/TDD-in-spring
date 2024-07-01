@@ -1,9 +1,19 @@
 package com.example.test_driven_development.task;
 
-public interface TaskService {
+import java.util.concurrent.ThreadLocalRandom;
 
-    Long createTask(String asText);
+import org.springframework.stereotype.Service;
 
-    void deleteTask(Long taskId);
+@Service
+public class TaskService {
+
+    public Long createTask(String title){
+        System.out.println("Creating a new task with title : " + title);
+        return Math.abs(ThreadLocalRandom.current().nextLong());
+    }
+
+    public void deleteTask(Long taskId){
+        System.out.println("Deleting task with id : " + taskId);
+    }
 
 }
